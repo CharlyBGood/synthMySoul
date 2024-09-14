@@ -43,13 +43,13 @@ for (const pad of pads) {
   });
 }
 
-function keyboardPlay(e) {
-  let key = e.key.toLowerCase();
+// function keyboardPlay(e) {
+//   let key = e.key.toLowerCase();
 
-  alert("the key was " + key);
-}
+//   alert("the key was " + key);
+// }
 
-window.addEventListener("keydown", keyboardPlay);
+// window.addEventListener("keydown", keyboardPlay);
 
 function removeTransition(e) {
   if (e.propertyName !== "transform") return;
