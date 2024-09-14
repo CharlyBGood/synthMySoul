@@ -41,6 +41,9 @@ for (let i = 0; i < pads.length; i++) {
 function playNote(note) {
   if (letsPlay) {
     initAudioContext();
+    if (audioCtx.state === 'suspended') {
+      audioCtx.resume();
+    }
     osc = audioCtx.createOscillator();
     osc.type = "sine";
     osc.frequency.value = NOTES[note];
