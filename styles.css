@@ -1,0 +1,177 @@
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap");
+
+:root {
+  color-scheme: light only;
+  --fs-600: 2rem;
+  --fs-500: 1.35rem;
+  --fs-400: 1rem;
+  --col-whr: #e2e1e1;
+  --col-whp: #f7e4f2;
+  --col-rd: #3a063e;
+  --col-rdw: #7d6080;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+html,
+body,
+form,
+fieldset,
+p,
+div,
+h1,
+h2,
+h3,
+h4,
+a,
+span {
+  -moz-text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -ms-text-size-adjust: none;
+  text-size-adjust: none;
+}
+
+html {
+  height: webkit-fill-available;
+}
+
+body,
+html {
+  font-size: 10px;
+  font-family: "Nanum Gothic", sans-serif;
+  color: var(--col-whr);
+  background-color: #000;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: auto;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.topnav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  background-color: var(--col-rd);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  opacity: 0.9;
+}
+
+.topnav h2 {
+  font-size: var(--fs-500);
+  margin-right: 3em;
+}
+
+.header-logo {
+  border-radius: 3em;
+  padding: 0.4em;
+  margin-left: 1.5em;
+}
+
+.synth-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* margin: 14% auto; */
+  height: 100vh;
+}
+
+input[type="range"] {
+  appearance: none;
+  border: 1px solid #222;
+  cursor: pointer;
+}
+
+.drum-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 85%;
+  height: 50vh;
+  /* margin: 0 auto; */
+  /* margin: 14% auto; */
+}
+
+.key {
+  border: 0.4rem solid #272626;
+  border-radius: 0.5rem;
+  width: 11vw;
+  height: 11vh;
+  /* flex: 1; */
+  margin: 0.5em;
+  padding: 1rem 0.5rem;
+  transition: all 0.07s ease;
+  text-align: center;
+  color: rgb(207, 35, 35);
+  background: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 0.5rem black;
+  cursor: pointer;
+  background-image: url("img/bolas.gif");
+}
+
+.playing {
+  transform: scale(1.1);
+  border-color: #c41515;
+  box-shadow: 0 0 1rem #e71c1c;
+}
+
+kbd {
+  display: block;
+  font-size: 1.5rem;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: var(--col-rd);
+  padding: 1em;
+  opacity: 0.95;
+}
+
+footer p {
+  text-align: center;
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: bold;
+  padding: 1em;
+}
+
+footer a {
+  text-decoration: none;
+  color: var(--col-whp);
+  font-size: var(--fs-500);
+}
+
+@media (max-width: 800px) {
+  .drum-container {
+    /* margin: 37% auto; */
+    width: 100%;
+    gap: 1em;
+  }
+
+  .key {
+    /* margin: 2.5em; */
+    padding: 4rem 0.5rem;
+  }
+}
+
+@media screen and (max-device-width: 480px) {
+  body {
+    -webkit-text-size-adjust: none;
+  }
+}
