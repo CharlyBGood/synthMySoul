@@ -4,7 +4,7 @@ const NOTES = {
   "C-4": 261.626,
   "C-#": 277.1826,
   "D-4": 293.665,
-  "D-#": 311.1270,
+  "D-#": 311.127,
   "E-4": 329.628,
   "F-4": 349.228,
   "F-#": 369.9944,
@@ -18,29 +18,49 @@ const NOTES = {
 
 const WAVEFORMS = ["sine", "square", "sawtooth", "triangle"];
 
+let audioCtx;
 let osc;
 
 const pads = drum.querySelectorAll(".key");
+
+function initAudioContext() {
+  if (!audioCtx) {
+    audioCtx = new (AudioContext || webkitAudioContext)();
+  }
+}
+
+// Assign data-index to each pad
 for (let i = 0; i < pads.length; i++) {
   pads[i].setAttribute("data-index", i);
 }
 
+// function to play the note
+function playNote(note) {
+  initAudioContext();
+  osc = audioCtx.createOscillator();
+  osc.type = "sine";
+  osc.frequency.value = NOTES[note];
+  osc.connect(audioCtx.destination);
+  osc.start();
+}
+
+// Add event lisetners to each pad
 for (const pad of pads) {
   pad.addEventListener("pointerdown", () => {
-    const audioCtx = new (AudioContext || webkitAudioContext)();
-    if (!audioCtx) throw "Not supported!";
-    osc = audioCtx.createOscillator();
-    osc.type = "sine";
-    osc.frequency.value = NOTES[pad.dataset.note]; // Hz = middle A
-    osc.connect(audioCtx.destination);
-    osc.start();
+    playNote(pad.dataset.note); // Play the note associated with the pad
     pad.classList.add("playing");
   });
 
   pad.addEventListener("pointerup", () => {
-    osc.stop();
+    if (psc) osc.stop();
     pad.classList.remove("playing");
   });
+}
+
+// Function to remove the transition effect
+function removeTransition(e) {
+  if (e.propertyName !== "transform") return;
+  e.target.classList.remove("playing");
 }
 
 // function keyboardPlay(e) {
@@ -50,8 +70,3 @@ for (const pad of pads) {
 // }
 
 // window.addEventListener("keydown", keyboardPlay);
-
-function removeTransition(e) {
-  if (e.propertyName !== "transform") return;
-  e.target.classList.remove("playing");
-}
