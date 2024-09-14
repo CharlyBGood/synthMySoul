@@ -9,6 +9,10 @@
   --col-whp: #f7e4f2;
   --col-rd: #3a063e;
   --col-rdw: #7d6080;
+  --pads-red: rgb(207, 35, 35);
+  --pads-shadow: #e71c1c;
+  --pads-border-off: #272626;
+  --pads-border-on: #c41515;
 }
 
 * {
@@ -96,37 +100,39 @@ input[type="range"] {
 }
 
 .drum-container {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; */
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: 1fr 1fr;
   width: 85%;
-  height: 50vh;
-  /* margin: 0 auto; */
-  /* margin: 14% auto; */
+  /* height: 50vh; */
 }
 
 .key {
-  border: 0.4rem solid #272626;
+  border: 0.4rem solid var(--pads-border-off);
   border-radius: 0.5rem;
-  width: 11vw;
+  /* width: 11vw; */
   height: 11vh;
   /* flex: 1; */
   margin: 0.5em;
   padding: 1rem 0.5rem;
   transition: all 0.07s ease;
   text-align: center;
-  color: rgb(207, 35, 35);
+  color: var(--pads-red);
   background: rgba(0, 0, 0, 0.4);
   text-shadow: 0 0 0.5rem black;
   cursor: pointer;
-  background-image: url("img/bolas.gif");
+  /* background-image: url("img/bolas.gif"); */
 }
 
 .playing {
   transform: scale(1.1);
-  border-color: #c41515;
-  box-shadow: 0 0 1rem #e71c1c;
+  border-color: var(--pads-border-on);
+  box-shadow: 0 0 1rem var(--pads-shadow);
 }
 
 kbd {
@@ -161,12 +167,12 @@ footer a {
   .drum-container {
     /* margin: 37% auto; */
     width: 100%;
-    gap: 1em;
+    /* gap: 1em; */
   }
 
   .key {
     /* margin: 2.5em; */
-    padding: 4rem 0.5rem;
+    /* padding: 4rem 0.5rem; */
   }
 }
 
