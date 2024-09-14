@@ -20,13 +20,16 @@ const WAVEFORMS = ["sine", "square", "sawtooth", "triangle"];
 
 let audioCtx;
 let osc;
+let letsPlay = false;
 
 const pads = drum.querySelectorAll(".key");
 
+if (confirm("Are you ready to Synth Your Soul?")) {
+  letsPlay = true;
+}
+
 function initAudioContext() {
-  if (!audioCtx) {
-    audioCtx = new (AudioContext || webkitAudioContext)();
-  }
+  audioCtx = new (AudioContext || webkitAudioContext)();
 }
 
 // Assign data-index to each pad
@@ -36,12 +39,14 @@ for (let i = 0; i < pads.length; i++) {
 
 // function to play the note
 function playNote(note) {
-  initAudioContext();
-  osc = audioCtx.createOscillator();
-  osc.type = "sine";
-  osc.frequency.value = NOTES[note];
-  osc.connect(audioCtx.destination);
-  osc.start();
+  if (letsPlay) {
+    initAudioContext();
+    osc = audioCtx.createOscillator();
+    osc.type = "sine";
+    osc.frequency.value = NOTES[note];
+    osc.connect(audioCtx.destination);
+    osc.start();
+  }
 }
 
 // Add event lisetners to each pad
@@ -52,7 +57,7 @@ for (const pad of pads) {
   });
 
   pad.addEventListener("pointerup", () => {
-    if (psc) osc.stop();
+    if (osc) osc.stop();
     pad.classList.remove("playing");
   });
 }
